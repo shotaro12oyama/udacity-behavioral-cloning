@@ -14,7 +14,7 @@ from keras.models import Model
 
 
 samples = []
-with open('../data/driving_log.csv') as csvfile:
+with open('./data/driving_log.csv') as csvfile:
     reader = csv.reader(csvfile)
     for line in reader:
         samples.append(line)
@@ -32,7 +32,7 @@ def generator(samples, batch_size):
             images = []
             angles = []
             for batch_sample in batch_samples:
-                name = '../data/IMG/'+batch_sample[0].split('/')[-1]
+                name = './data/IMG/'+batch_sample[0].split('/')[-1]
                 center_image = cv2.imread(name)
                 center_angle = float(batch_sample[3])
                 images.append(center_image)
@@ -43,10 +43,10 @@ def generator(samples, batch_size):
                 left_angle = center_angle + correction
                 right_angle = center_angle - correction
 
-                name = '../data/IMG/'+batch_sample[1].split('/')[-1]
+                name = './data/IMG/'+batch_sample[1].split('/')[-1]
                 left_image = cv2.imread(name)
 
-                name = '../data/IMG/'+batch_sample[2].split('/')[-1]
+                name = './data/IMG/'+batch_sample[2].split('/')[-1]
                 right_image = cv2.imread(name)
 
                 # add images and angles to data set
@@ -82,7 +82,7 @@ model.add(Convolution2D(24, 5, 5, subsample=(2, 2), activation="relu"))
 model.add(Convolution2D(36, 5, 5, subsample=(2, 2), activation="relu"))
 model.add(Convolution2D(48, 5, 5, subsample=(2, 2), activation="relu"))
 model.add(Convolution2D(64, 3, 3, activation="relu"))
-model.add(Convolution2D(64, 3, 3))
+model.add(Convolution2D(128, 3, 3))
 model.add(Dropout(0.5))
 model.add(Flatten())
 model.add(Dense(100, activation='relu'))
