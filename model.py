@@ -6,7 +6,7 @@ import sklearn
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from keras.models import Sequential
-from keras.layers import Flatten, Dense, Lambda, Cropping2D
+from keras.layers import Flatten, Dense, Lambda, Cropping2D, Dropout
 from keras.layers.convolutional import Convolution2D
 from keras.layers.pooling import MaxPooling2D
 from keras.models import Model
@@ -22,7 +22,7 @@ with open('../data/driving_log.csv') as csvfile:
 train_samples, validation_samples = train_test_split(samples, test_size=0.2)
 
 
-def generator(samples, batch_size=32):
+def generator(samples, batch_size):
     num_samples = len(samples)
     while 1: # Loop forever so the generator never terminates
         sklearn.utils.shuffle(samples)
@@ -70,8 +70,8 @@ def generator(samples, batch_size=32):
 
 
 # compile and train the model using the generator function
-train_generator = generator(train_samples, batch_size=32)
-validation_generator = generator(validation_samples, batch_size=32)
+train_generator = generator(train_samples, batch_size=1024)
+validation_generator = generator(validation_samples, batch_size=1024)
 
 
 model = Sequential()
@@ -82,12 +82,10 @@ model.add(Convolution2D(24, 5, 5, subsample=(2, 2), activation="relu"))
 model.add(Convolution2D(36, 5, 5, subsample=(2, 2), activation="relu"))
 model.add(Convolution2D(48, 5, 5, subsample=(2, 2), activation="relu"))
 model.add(Convolution2D(64, 3, 3, activation="relu"))
-model.add(Convolution2D(64, 3, 3, activation="relu"))
-#model.add(MaxPooling2D())
-#model.add(Convolution2D(6, 5, 5, activation="relu"))
-#model.add(MaxPooling2D())
+model.add(Convolution2D(64, 3, 3))
+model.add(Dropout(0.5))
 model.add(Flatten())
-model.add(Dense(100))
+model.add(Dense(100, activation='relu'))
 model.add(Dense(50))
 model.add(Dense(10))
 model.add(Dense(1))
