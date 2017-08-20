@@ -32,8 +32,8 @@ def generator(samples, batch_size):
             for batch_sample in batch_samples:
                 name = './data/IMG/'+batch_sample[0].split('/')[-1]
                 center_image = cv2.imread(name)
-                center_image = cv2.GaussianBlur(center_image, (3,3),0)
                 center_image = cv2.cvtColor(center_image, cv2.COLOR_BGR2RGB)
+                center_image = cv2.GaussianBlur(center_image, (3,3),0)                
                 center_angle = float(batch_sample[3])
                 images.append(center_image)
                 angles.append(center_angle)
@@ -45,14 +45,14 @@ def generator(samples, batch_size):
 
                 name = './data/IMG/'+batch_sample[1].split('/')[-1]
                 left_image = cv2.imread(name)
-                left_image = cv2.GaussianBlur(left_image, (3,3),0)
                 left_image = cv2.cvtColor(left_image, cv2.COLOR_BGR2RGB)
+                left_image = cv2.GaussianBlur(left_image, (3,3),0)
 
 
                 name = './data/IMG/'+batch_sample[2].split('/')[-1]
                 right_image = cv2.imread(name)
-                right_image = cv2.GaussianBlur(right_image, (3,3),0)
                 right_image = cv2.cvtColor(right_image, cv2.COLOR_BGR2RGB)
+                right_image = cv2.GaussianBlur(right_image, (3,3),0)
 
 
                 # add images and angles to data set
