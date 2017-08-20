@@ -38,7 +38,7 @@ def generator(samples, batch_size):
                 images.append(center_image)
                 angles.append(center_angle)
                 if not os.path.isfile(current_path):
-                    print('WARNING: IMAGE IS MISSING...', current_path)
+                    print('WARNING: IMAGE IS MISSING...', name)
 
                 # create adjusted steering angles for the side camera images
                 correction = 0.2 # this is a parameter to tune
