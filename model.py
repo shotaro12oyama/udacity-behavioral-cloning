@@ -70,8 +70,8 @@ def generator(samples, batch_size):
 
 
 # compile and train the model using the generator function
-train_generator = generator(train_samples, batch_size=1024)
-validation_generator = generator(validation_samples, batch_size=1024)
+train_generator = generator(train_samples, batch_size=8192)
+validation_generator = generator(validation_samples, batch_size=8192)
 
 
 model = Sequential()
