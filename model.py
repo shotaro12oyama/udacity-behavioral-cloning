@@ -32,16 +32,11 @@ def generator(samples, batch_size):
             for batch_sample in batch_samples:
                 name = './data/IMG/'+batch_sample[0].split('/')[-1]
                 center_image = cv2.imread(name)
-                print(name)
                 center_image = cv2.cvtColor(center_image, cv2.COLOR_BGR2RGB)
                 center_image = cv2.GaussianBlur(center_image, (3,3),0)                
                 center_angle = float(batch_sample[3])
                 images.append(center_image)
                 angles.append(center_angle)
-                #if not os.path.isfile(name):
-                #    print('WARNING: IMAGE IS MISSING...', name)
-
-                # create adjusted steering angles for the side camera images
                 correction = 0.2 # this is a parameter to tune
                 left_angle = center_angle + correction
                 right_angle = center_angle - correction
