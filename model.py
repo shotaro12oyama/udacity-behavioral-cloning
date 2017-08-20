@@ -1,17 +1,15 @@
-import os
 import csv
+import os
+
 import cv2
+import matplotlib.pyplot as plt
 import numpy as np
 import sklearn
-import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split
-from keras.models import Sequential
-from keras.layers import Flatten, Dense, Lambda, Cropping2D, Dropout
+from keras.layers import Cropping2D, Dense, Dropout, Flatten, Lambda
 from keras.layers.convolutional import Convolution2D
 from keras.layers.pooling import MaxPooling2D
-from keras.models import Model
-
-
+from keras.models import Model, Sequential
+from sklearn.model_selection import train_test_split
 
 samples = []
 with open('./data/driving_log.csv') as csvfile:
@@ -34,6 +32,7 @@ def generator(samples, batch_size):
             for batch_sample in batch_samples:
                 name = './data/IMG/'+batch_sample[0].split('/')[-1]
                 center_image = cv2.imread(name)
+                center_image = cv2.cvtColor(center_image, cv2.COLOR_BGR2RGB)
                 center_angle = float(batch_sample[3])
                 images.append(center_image)
                 angles.append(center_angle)
@@ -45,9 +44,13 @@ def generator(samples, batch_size):
 
                 name = './data/IMG/'+batch_sample[1].split('/')[-1]
                 left_image = cv2.imread(name)
+                left_image = cv2.cvtColor(left_image, cv2.COLOR_BGR2RGB)
+
 
                 name = './data/IMG/'+batch_sample[2].split('/')[-1]
                 right_image = cv2.imread(name)
+                right_image = cv2.cvtColor(right_image, cv2.COLOR_BGR2RGB)
+
 
                 # add images and angles to data set
                 images.append(left_image)
@@ -70,8 +73,8 @@ def generator(samples, batch_size):
 
 
 # compile and train the model using the generator function
-train_generator = generator(train_samples, batch_size=8192)
-validation_generator = generator(validation_samples, batch_size=8192)
+train_generator = generator(train_samples, batch_size=128)
+validation_generator = generator(validation_samples, batch_size=128)
 
 
 model = Sequential()
