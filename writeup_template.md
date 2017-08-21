@@ -18,8 +18,8 @@ The goals / steps of this project are the following:
 [image2]: ./examples/center.jpg "Center Image"
 [image3]: ./examples/left.jpg "Left Image"
 [image4]: ./examples/right.jpg "Right Image"
-[image6]: ./examples/before.png "Normal Image"
-[image7]: ./examples/after.png "Flipped Image"
+[image6]: ./examples/before.jpg "Normal Image"
+[image7]: ./examples/after.jpg "Flipped Image"
 
 **Rubric Points**
 
