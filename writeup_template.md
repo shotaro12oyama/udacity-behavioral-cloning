@@ -52,19 +52,19 @@ The model.py file contains the code for training and saving the convolution neur
 
 #### 1. An appropriate model architecture has been employed ####
 
-My model consists of a convolution neural network with 5x5 and 3x3 filter sizes and depths between 32 and 64, which is the same model as NVIDIA. (model.py lines 95-110) 
+My model consists of a convolution neural network with 5x5 and 3x3 filter sizes and depths between 32 and 64, which is the same model as NVIDIA. (model.py lines 96-111) 
 
-The model includes RELU layers to introduce nonlinearity (model.py lines 100-103,107), and the data is normalized in the model using a Keras lambda layer (model.py line 98), also, Dropout layer (model.py line 105)
+The model includes RELU layers to introduce nonlinearity (model.py lines 101-104,108), and the data is normalized in the model using a Keras lambda layer (model.py line 99), also, Dropout layer (model.py line 106)
 
 #### 2. Attempts to reduce overfitting in the model ####
 
-The model contains dropout layers in order to reduce overfitting (model.py lines 105). 
+The model contains dropout layers in order to reduce overfitting (model.py lines 106). 
 
-The model was trained and validated on different data sets to ensure that the model was not overfitting (model.py line 112-114). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
+The model was trained and validated on different data sets to ensure that the model was not overfitting (model.py line 113-115). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
 #### 3. Model parameter tuning ####
 
-The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 25).
+The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 114).
 
 #### 4. Appropriate training data ####
 
@@ -76,7 +76,7 @@ For details about how I created the training data, see the next section.
 
 #### 1. Solution Design Approach ####
 
-The overall strategy for deriving a model architecture was to 
+The overall strategy for deriving a model architecture was to end-to-end artchitecture by NVIDIA. (https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/)
 
 My first step was to use a convolution neural network model similar to the Lenet-5, however, it did not work well in spite of testing some parameter and model tuning. so I thought this model might be appropriate because ...
 
@@ -104,20 +104,20 @@ To capture good driving behavior, I first recorded two laps on track one using c
 
 ![alt text][image2]
 
-I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
+I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to the situation it need to modify its angle. These images show what a recovery looks like starting from on the line both side of the road :
 
 ![alt text][image3]
 ![alt text][image4]
 
-To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
+To augment the data sat, I also flipped images and angles thinking that this would mitigate the diviation of the data, because there are almost left curves only in the first track. For example, here is an image that has then been flipped:
 
 ![alt text][image6]
 ![alt text][image7]
 
 
-After the collection process, I had 48,250 number of data points. I then preprocessed this data by 
+After the collection process, I had 48,250 number of data points. I then preprocessed this data by Gaussian Filter.
 
 
-I finally randomly shuffled the data set and put Y% of the data into a validation set. 
+I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 5 as evidenced by the matured accuracy level. I used an adam optimizer so that manually training the learning rate wasn't necessary.
