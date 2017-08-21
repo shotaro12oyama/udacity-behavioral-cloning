@@ -108,7 +108,6 @@ I then recorded the vehicle recovering from the left side and right sides of the
 
 ![alt text][image3]
 ![alt text][image4]
-![alt text][image5]
 
 To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
 
