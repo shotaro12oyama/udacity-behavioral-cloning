@@ -10,6 +10,7 @@ from keras.layers.convolutional import Convolution2D
 from keras.layers.pooling import MaxPooling2D
 from keras.models import Model, Sequential
 from sklearn.model_selection import train_test_split
+from keras.utils.visualize_util import plot
 
 
 #PARAMETERS
@@ -109,11 +110,13 @@ model.add(Dense(50))
 model.add(Dense(10))
 model.add(Dense(1))
 
+plot(model, to_file='model.png', show_shapes='True')
 model.compile(loss='mse', optimizer='adam')
 history_object = model.fit_generator(train_generator, samples_per_epoch=len(train_samples), validation_data=validation_generator,\
     nb_val_samples=len(validation_samples), nb_epoch=5, verbose=1)
 
 model.save('model.h5')
+
 
 
 
