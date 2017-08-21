@@ -9,6 +9,7 @@ from keras.layers import Cropping2D, Dense, Dropout, Flatten, Lambda
 from keras.layers.convolutional import Convolution2D
 from keras.layers.pooling import MaxPooling2D
 from keras.models import Model, Sequential
+from keras import optimizers
 from sklearn.model_selection import train_test_split
 
 samples = []
@@ -75,8 +76,8 @@ def generator(samples, batch_size):
 
 
 # compile and train the model using the generator function
-train_generator = generator(train_samples, batch_size=128)
-validation_generator = generator(validation_samples, batch_size=128)
+train_generator = generator(train_samples, batch_size=256)
+validation_generator = generator(validation_samples, batch_size=256)
 
 
 model = Sequential()
@@ -88,7 +89,7 @@ model.add(Convolution2D(36, 5, 5, subsample=(2, 2), activation="relu"))
 model.add(Convolution2D(48, 5, 5, subsample=(2, 2), activation="relu"))
 model.add(Convolution2D(64, 3, 3, activation="relu"))
 model.add(Convolution2D(96, 3, 3))
-model.add(Dropout(0.4))
+model.add(Dropout(0.2))
 model.add(Flatten())
 model.add(Dense(100, activation='relu'))
 model.add(Dense(50))
@@ -98,8 +99,9 @@ model.add(Dense(1))
 
 #model.compile(loss='mse', optimizer='adam')
 #model.fit(X_train, y_train, validation_split=0.2, shuffle=True, nb_epoch=2, verbose=1)
-model.compile(loss='mse', optimizer='adam')
-history_object = model.fit_generator(train_generator, samples_per_epoch=len(train_samples), validation_data=validation_generator, nb_val_samples=len(validation_samples), nb_epoch=10, verbose=1)
+adam = optimizers.Adam(lr=0.0005, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=0.0)
+model.compile(loss='mse', optimizer=adam)
+history_object = model.fit_generator(train_generator, samples_per_epoch=len(train_samples), validation_data=validation_generator, nb_val_samples=len(validation_samples), nb_epoch=20, verbose=1)
 
 model.save('model2.h5')
 
