@@ -15,10 +15,9 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 
 [image1]: ./examples/model.png "Model Visualization"
-[image2]: ./examples/center.png "Center Image"
+[image2]: ./examples/center.jpg "Center Image"
 [image3]: ./examples/left.jpg "Left Image"
 [image4]: ./examples/right.jpg "Right Image"
-[image5]: ./examples/placeholder_small.png "Recovery Image"
 [image6]: ./examples/placeholder_small.png "Normal Image"
 [image7]: ./examples/placeholder_small.png "Flipped Image"
 
