@@ -15,10 +15,9 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 
 [image1]: ./examples/model.png "Model Visualization"
-[image2]: ./examples/center.png "Center Image"
-[image3]: ./examples/left.png "Left Image"
-[image4]: ./examples/right.png "Right Image"
-[image5]: ./examples/placeholder_small.png "Recovery Image"
+[image2]: ./examples/center.jpg "Center Image"
+[image3]: ./examples/left.jpg "Left Image"
+[image4]: ./examples/right.jpg "Right Image"
 [image6]: ./examples/placeholder_small.png "Normal Image"
 [image7]: ./examples/placeholder_small.png "Flipped Image"
 
@@ -109,7 +108,6 @@ I then recorded the vehicle recovering from the left side and right sides of the
 
 ![alt text][image3]
 ![alt text][image4]
-![alt text][image5]
 
 To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
 
